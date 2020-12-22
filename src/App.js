@@ -1,6 +1,38 @@
+import { Multiselect } from 'multiselect-react-dropdown';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const sunData = [
+    {Sun: 'Full', id:1},
+    {Sun: 'Bright', id:2},
+    {Sun: 'Partial', id:3},
+    {Sun: 'Indirect', id:4},
+    {Sun: 'Shade', id:4}
+  ]
+
+  const waterData = [
+    {Water: 'Frequently', id:1},
+    {Water: 'Infrequently', id:1},
+    {Water: 'Rarely', id:1},
+    {Water: 'Keep Moist', id:1},
+    {Water: 'Allow to Fully Dry', id:1}
+  ]
+
+  const fertData = [
+    {Fert: 'None', id:1},
+    {Fert: 'Yearly', id:1},
+    {Fert: 'Spring', id:1},
+    {Fert: 'Summer', id:1},
+    {Fert: 'Fall', id:1},
+    {Fert: 'Monthly', id:1},
+
+  ]
+ 
+  const [sunOptions] = useState(sunData)
+  const [waterOptions] = useState(waterData)
+  const [fertOptions] = useState(fertData)
+
   return (
     <form>
       {/* Plant Name */}
@@ -21,25 +53,28 @@ function App() {
       {/* Sun */}
       <label>
         Choose the amount of sun your plant needs.
-        <select>
-          <option value="full">Full</option>
-          <option value="bright">Bright</option>
-          <option value="partial">Partial</option>
-          <option value="indirect">Indirect</option>
-          <option value="shade">Shade</option>
-        </select>
+        <Multiselect
+        options={sunOptions}
+        displayValue="Sun"
+      />
       </label>
       {/* water */}
       <label>
         Choose the amount of water your plant needs.
-        <select>
-          <option value="frequently">Frequently</option>
-          <option value="infrequently">Infrequently</option>
-          <option value="rarely">Rarely</option>
-          <option value="moist">Keep Moist</option>
-          <option value="dry">Allow to Fully Dry</option>
-        </select>
+        <Multiselect
+        options={waterOptions}
+        displayValue="Water"
+        />
       </label>
+      {/* fertilizer */}
+      <label>
+        Choose the amount of fertilizer your plant needs.
+        <Multiselect
+        options={fertOptions}
+        displayValue="Fert"
+        />
+      </label>
+      <input type="submit" value="submit"></input>
     </form>
   );
 }
