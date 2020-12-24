@@ -1,9 +1,9 @@
 import { Multiselect } from 'multiselect-react-dropdown';
 import { useState } from 'react';
 import './App.css';
+import Axios from "axios";
 import { Button, Form, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 function App() {
   const sunData = [
@@ -35,6 +35,16 @@ function App() {
   const [sunOptions] = useState(sunData)
   const [waterOptions] = useState(waterData)
   const [fertOptions] = useState(fertData)
+
+    Axios({
+      method: "GET",
+      url: "http://localhost:5000/",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      console.log(res.data.message);
+    });
 
   return (
     <Container>
