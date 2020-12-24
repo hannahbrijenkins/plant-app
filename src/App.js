@@ -1,6 +1,9 @@
 import { Multiselect } from 'multiselect-react-dropdown';
 import { useState } from 'react';
 import './App.css';
+import { Button, Form, Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const sunData = [
@@ -34,48 +37,61 @@ function App() {
   const [fertOptions] = useState(fertData)
 
   return (
-    <form>
-      {/* Plant Name */}
-      <label>
-        Plant Name:
-        <input type="text" name="name" placeholder="Plant Name"/>
-      </label>
-      {/* Scientific Name */}
-      <label>
-        Scientific Name:
-        <input type="text" name="name" placeholder="Scientific Name"/>
-      </label>
-      {/* photos */}
-      <label>
-        Plant Photos:
-        <input type="file" name="name"/>
-      </label>
-      {/* Sun */}
-      <label>
-        Choose the amount of sun your plant needs.
-        <Multiselect
-        options={sunOptions}
-        displayValue="Sun"
-      />
-      </label>
-      {/* water */}
-      <label>
-        Choose the amount of water your plant needs.
-        <Multiselect
-        options={waterOptions}
-        displayValue="Water"
-        />
-      </label>
-      {/* fertilizer */}
-      <label>
-        Choose the amount of fertilizer your plant needs.
-        <Multiselect
-        options={fertOptions}
-        displayValue="Fert"
-        />
-      </label>
-      <input type="submit" value="submit"></input>
-    </form>
+    <Container>
+      <Form>
+        {/* Plant Name */}
+        <Form.Group>
+          <Form.Label>Plant Name</Form.Label>        
+          <Form.Control type="text" name="name" placeholder="Plant Name"/>
+        </Form.Group>
+
+        {/* Scientific Name */}
+        <Form.Group>
+          <Form.Label>Scientific Name</Form.Label>
+          <Form.Control type="text" name="name" placeholder="Scientific Name"/>
+        </Form.Group>
+
+        {/* Photos */}
+        <Form.Group>
+          <Form.Label>Plant Photos</Form.Label>
+          <Form.Control type="file" name="name"/>
+        </Form.Group>
+
+        {/* Sun */}
+        <Form.Group>
+          <Form.Label>Choose the amount of sun your plant needs</Form.Label>
+          <Multiselect
+            options={sunOptions}
+            displayValue="Sun"
+          />
+        </Form.Group>
+
+        {/* water */}
+        <Form.Group>
+          <Form.Label>Choose the amount of water your plant needs.</Form.Label>
+            <Multiselect
+              options={waterOptions}
+              displayValue="Water"
+            />
+        </Form.Group>
+
+        {/* fertilizer */}
+        <Form.Group>
+        <Form.Label>Choose the amount of fertilizer your plant needs.</Form.Label>
+          <Multiselect
+            options={fertOptions}
+            displayValue="Fert"
+          />
+        </Form.Group>
+        {/* Notes */}
+      <Form.Group>
+        <Form.Label>Notes</Form.Label>
+        <Form.Control as="textarea" />
+      </Form.Group>
+
+      <Button type="submit" value="submit">Submit</Button>
+      </Form>
+    </Container>
   );
 }
 
